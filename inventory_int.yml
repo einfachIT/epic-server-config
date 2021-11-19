@@ -1,12 +1,48 @@
-local:
-  hosts:
-    localhost:
-      ansible_connection: local
-      ansible_python_interpreter: "{{ project_dir }}/venv/bin/python"
-
-containers:
-  hosts:
-    ssh_tor:
-      ansible_connection: docker
-      ansible_user: root
-      image: balenalib/raspberrypi4-64-debian-python
+all:
+  vars:
+    home_backup_dir: "/data/backup/home"
+  children:
+    raspberries:
+      vars:
+        ansible_connection: ssh
+        ansible_user: pi
+        ansible_ssh_pass: raspberry
+        ansible_python_interpreter: /usr/bin/python3
+      children:
+        argon_case:
+          vars:
+            disk_device: '/dev/sda'
+            mount_point: '/data'
+          hosts:
+            epic-docker-host:
+              hostname: "britney-spears"
+              ansible_host: "{{ hostname }}.local"
+              raw_hostname: '0x5618cdd5'
+    
+    container:
+      vars:
+        ansible_connection: docker                                       
+        remote_tmp: /tmp/.ansible
+        ansible_user: root 
+        image: balenalib/raspberrypi4-64-debian-python
+        docker_host: epic-docker-host
+        docker_api: "tcp://{{ hostvars[docker_host].ansible_host }}:2375"
+        ansible_docker_extra_args: "-H={{ docker_api }}"
+      hosts:
+        epic-backup:
+          users:
+          - username: testuser
+            fullname: test user
+            password: buaepolojoku
+            update_password: on_create
+            ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa_einfachit.pub') }}"
+            comment: Test User
+            group: testcommon
+    
+          - username: testadmin
+            fullname: test admin
+            password: lepatevaxafo
+            update_password: on_create
+            ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa_einfachit.pub') }}"
+            comment: Test Admin User
+            group: admins
