@@ -17,7 +17,7 @@ all:
             epic-docker-host:
               hostname: "britney-spears"
               ansible_host: "{{ hostname }}.local"
-              raw_hostname: '0x5618cdd5'
+              raw_hostname: '0x52e884f2'
     
     container:
       vars:
@@ -33,7 +33,7 @@ all:
           users:
           - username: testuser
             fullname: test user
-            password: buaepolojoku
+            password: "{{ buaepolojoku | password_hash('sha512') }}
             update_password: on_create
             ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa_einfachit.pub') }}"
             comment: Test User
@@ -41,7 +41,7 @@ all:
     
           - username: testadmin
             fullname: test admin
-            password: lepatevaxafo
+            password: "{{ lepatevaxafo | password_hash('sha512') }}
             update_password: on_create
             ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa_einfachit.pub') }}"
             comment: Test Admin User

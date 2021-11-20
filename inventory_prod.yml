@@ -22,18 +22,14 @@ containers:
   hosts:
     epic-backup:
       users:
-      - username: testuser
-        fullname: test user
+      - username: bastianbukatz
+        fullname: "Bastian Bukatz"
         password: buaepolojoku
         update_password: on_create
-        ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-        comment: Test User
-        group: testcommon
+        group: epicraspberries
 
-      - username: testadmin
-        fullname: test admin
+      - username: karlabukatz
+        fullname: "Karla Bukatz"
         password: lepatevaxafo
         update_password: on_create
-        ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-        comment: Test Admin User
         group: admins
