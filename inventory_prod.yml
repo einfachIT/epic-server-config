@@ -6,7 +6,7 @@ server:
     ansible_python_interpreter: /usr/bin/python3
  hosts:
     epic-docker-host:
-      hostname: "britney-spears"
+      hostname: "jennifer-lopez"
       ansible_host: "{{ hostname }}.local"
       raw_hostname: '0x5618cdd5'
 
@@ -21,15 +21,3 @@ containers:
     ansible_docker_extra_args: "-H={{ docker_api }}"
   hosts:
     epic-backup:
-      users:
-      - username: bastianbukatz
-        fullname: "Bastian Bukatz"
-        password: buaepolojoku
-        update_password: on_create
-        group: epicraspberries
-
-      - username: karlabukatz
-        fullname: "Karla Bukatz"
-        password: lepatevaxafo
-        update_password: on_create
-        group: admins

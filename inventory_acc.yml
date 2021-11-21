@@ -1,6 +1,4 @@
 all:
-  vars:
-    home_backup_dir: "/data/backup/home"
   children:
     raspberries:
       vars:
@@ -30,18 +28,3 @@ all:
         ansible_docker_extra_args: "-H={{ docker_api }}"
       hosts:
         epic-backup:
-          users:
-          - username: testuser
-            fullname: test user
-            password: "{{ buaepolojoku | password_hash('sha512') }}"
-            update_password: on_create
-            ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa_einfachit.pub') }}"
-            comment: Test User
-            group: testcommon
-          - username: testadmin
-            fullname: test admin
-            password: "{{ lepatevaxafo | password_hash('sha512') }}"
-            update_password: on_create
-            ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa_einfachit.pub') }}"
-            comment: Test Admin User
-            group: admins
