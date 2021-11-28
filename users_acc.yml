@@ -1,0 +1,21 @@
+---
+users:
+- username: testuser
+  fullname: test user
+  uid: 1101
+  password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
+  update_password: on_create
+  comment: Test User
+  group: testcommon
+  gid: 1100
+  state: present
+
+- username: testadmin
+  fullname: test admin
+  uid: 1102
+  password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
+  update_password: on_create
+  comment: Test Admin User
+  group: admins
+  gid: 1101
+  state: present
