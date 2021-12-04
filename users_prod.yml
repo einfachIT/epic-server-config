@@ -1,25 +1,5 @@
 ---
 users:
-- username: testuser
-  fullname: test user
-  uid: 1101
-  password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
-  update_password: on_create
-  comment: Test User
-  group: testcommon
-  gid: 1100
-  state: present
-
-- username: testadmin
-  fullname: test admin
-  uid: 1102
-  password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
-  update_password: on_create
-  comment: Test Admin User
-  group: admins
-  gid: 1101
-  state: present
-
 - username: karla-bukatz
   fullname: Karla Bukatz
   uid: 1200
@@ -41,7 +21,7 @@ users:
   state: present
 
 - username: louisa-kellermann
-  fullname: Karla Bukatz
+  fullname: Louisa Kellermann
   uid: 1202
   password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
   update_password: on_create
@@ -51,7 +31,7 @@ users:
   state: present
 
 - username: gabriel-kellermann
-  fullname: Karla Bukatz
+  fullname: Gabriel Kellermann
   uid: 1203
   password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
   update_password: on_create
@@ -61,7 +41,7 @@ users:
   state: present
 
 - username: maja-bukatz
-  fullname: MajaBukatz
+  fullname: Maja Bukatz
   uid: 1204
   password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
   update_password: on_create
@@ -91,7 +71,7 @@ users:
   state: present
 
 - username: yael-liebi
-  fullname: Loni Lehmann 
+  fullname: Yael Liebi
   uid: 1207
   password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
   update_password: on_create

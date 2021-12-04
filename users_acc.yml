@@ -1,7 +1,14 @@
 ---
 users:
+
 - username: testuser
-  fullname: test user
+  state: absent
+
+- username: testadmin
+  state: absent
+
+- username: peter-pan 
+  fullname: Peter Pan
   uid: 1101
   password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
   update_password: on_create
@@ -10,9 +17,19 @@ users:
   gid: 1100
   state: present
 
-- username: testadmin
-  fullname: test admin
+- username: tim-thaler
+  fullname: Tim Thaler
   uid: 1102
+  password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
+  update_password: on_create
+  comment: Test User
+  group: testcommon
+  gid: 1100
+  state: present
+
+- username: test-admin
+  fullname: test admin
+  uid: 1103
   password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
   update_password: on_create
   comment: Test Admin User
