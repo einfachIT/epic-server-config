@@ -28,4 +28,4 @@ jobs:
       - name: Run molecule tests
         run: |
           source source.me
-          rebuild_acc.sh
+          ./rebuild_acc.sh
