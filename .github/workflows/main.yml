@@ -19,6 +19,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: 'true'
+          
+      - name: Clone einfachIT/ansible-collection-epic repository
+        uses: actions/checkout@v2
+        with:
+          repository: einfachIT/ansible-collection-epic
+          path: einfachit.epic
       
       - name: Prepare environment
         run: |
@@ -32,7 +38,7 @@ jobs:
         run: |
           source source.me
           echo "$VAULT_KEY" > .vault
-          ansible-galaxy collection install -f git@github.com:einfachIT/ansible-collection-epic.git
+          ansible-galaxy collection install -f einfachit.epic
           ansible-playbook -i inventory_acc.yml --extra-var project_dir=$(pwd) einfachit.epic.decommission_container
           ansible-playbook -i inventory_acc.yml einfachit.epic.decommission_raspberries
           ansible-playbook -i inventory_acc.yml einfachit.epic.provision_raspberries
