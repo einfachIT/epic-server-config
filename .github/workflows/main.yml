@@ -4,6 +4,9 @@ name: CI Test
 
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 0 * * *
   push:
     branches: [ main ]
   pull_request:
@@ -26,8 +29,11 @@ jobs:
           sudo apt -y install python3 python3-pip python3-venv
 
       - name: Run molecule tests
+          env:
+            VAULT_KEY: ${{ secrets.VAULT_KEY}}
         run: |
           source source.me
+          cat "$VAULT_KEY" > .vault
           ansible-galaxy collection install -f git@github.com:einfachIT/ansible-collection-epic.git
           ansible-playbook -i inventory_acc.yml --extra-var project_dir=$(pwd) einfachit.epic.decommission_container
           ansible-playbook -i inventory_acc.yml einfachit.epic.decommission_raspberries
