@@ -9,9 +9,13 @@ all:
       children:
         epicraspberries:
           hosts:
-            epicraspberry:
+            epid-tim:
               hostname: tim-thaler
               raw_hostname: '0xb2af4b33'
+              ansible_host: "{{ hostname }}.local"
+             epic-peter:
+              hostname: peter-pan
+              raw_hostname: '0xf0364264'
               ansible_host: "{{ hostname }}.local"
         ext_disk:
           vars:
