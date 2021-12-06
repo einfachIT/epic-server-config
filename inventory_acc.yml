@@ -7,16 +7,23 @@ all:
         ansible_ssh_pass: raspberry
         ansible_python_interpreter: /usr/bin/python3
       children:
+        epicraspberries:
+          hosts:
+            epicraspberry:
+              hostname: tim-thaler
+              raw_hostname: '0xb2af4b33'
+              ansible_host: "{{ hostname }}.local"
         ext_disk:
           vars:
             ext_disk_device: '/dev/sda'
+            # ext_disk_device: '/dev/loop0'
           children:
             docker_host:
               hosts:
                 epic-docker-host:
                   hostname: "britney-spears"
-                  ansible_host: "{{ hostname }}.local"
                   raw_hostname: '0x52e884f2'
+                  ansible_host: "{{ hostname }}.local"
     
     container:
       vars:
