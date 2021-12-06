@@ -2,14 +2,14 @@ all:
   children:
     raspberries:
       vars:
-        ansible_connection: ssh
+        ansible_connection: paramiko
         ansible_user: pi
         ansible_ssh_pass: raspberry
         ansible_python_interpreter: /usr/bin/python3
       children:
         epicraspberries:
           hosts:
-            epid-tim:
+            epic-tim:
               hostname: tim-thaler
               raw_hostname: '0xb2af4b33'
               ansible_host: "{{ hostname }}.local"
