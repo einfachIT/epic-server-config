@@ -26,7 +26,7 @@ all:
             docker_host:
               hosts:
                 epic-docker-host:
-                  hostname: "britney-spears"
+                  hostname: "karl-heinz"
                   raw_hostname: '0x52e884f2'
                   ansible_host: "{{ hostname }}.local"
     

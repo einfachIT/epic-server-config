@@ -1,0 +1,22 @@
+all:
+  children:
+    raspberries:
+      children:
+        epicraspberries:
+          hosts:
+            epic-bastian:
+            epic-karla:
+        ext_disk:
+           hosts:
+            epic-docker-host:
+        argon_case:
+            hosts:
+            epic-docker-host:
+        docker_host:
+          hosts:
+            epic-docker-host:
+    container:
+      children:
+        epic_backup:
+          hosts:
+            epic-backup:
