@@ -31,6 +31,7 @@ jobs:
         env:
           VAULT_KEY: ${{ secrets.VAULT_KEY}}
         run: |
+          source source.me
           echo "$VAULT_KEY" > .vault
           ansible-galaxy collection install -f ./einfachit.epic
           ansible-playbook -i inventory_acc.yml --extra-var project_dir=$(pwd) einfachit.epic.decommission_container
