@@ -1,0 +1,16 @@
+all:
+  children:
+    raspberries:
+      vars:
+        ansible_connection: ssh
+        ansible_user: pi
+        ansible_ssh_pass: raspberry
+        ansible_python_interpreter: /usr/bin/python3
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      children:
+        epicraspberries:
+          hosts:
+            actions_runner:
+              hostname: speedy-gonzales
+              raw_hostname: '0x4132c423'
+              ansible_host: "{{ hostname }}"

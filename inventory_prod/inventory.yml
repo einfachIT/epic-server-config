@@ -6,6 +6,7 @@ all:
           hosts:
             epic-bastian:
             epic-karla:
+            epic-louisa:
         ext_disk:
            hosts:
             epic-docker-host:

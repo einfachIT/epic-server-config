@@ -80,4 +80,12 @@ users:
   gid: 1200
   state: present
 
-
+- username: maya-lohmann
+  fullname: Maya Lohmann
+  uid: 1208
+  password: "$y$j9T$JtyMSJjB9l/pW9W4APb341$GD993mZqQLeuaxKIogpA0HtQKUmoCY72gvfOQs.UQm5"
+  update_password: on_create
+  comment: Epicraspberries Schulungsaccount
+  group: epicraspberries
+  gid: 1200
+  state: present

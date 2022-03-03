@@ -1,0 +1,5 @@
+---
+hostname: louisa-kellermann
+raw_hostname: ''
+ansible_host: "{{ hostname }}.local"
+
