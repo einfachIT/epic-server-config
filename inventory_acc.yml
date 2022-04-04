@@ -9,6 +9,8 @@ all:
         ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
       children:
         epicraspberries:
+          vars:
+            net_sync_hostname: ubhkxntypimkfegke3fggj4ope4loh2uh4odywuwbsdphw5gwjqif7id.onion
           hosts:
             epic-tim:
               hostname: tim-thaler
