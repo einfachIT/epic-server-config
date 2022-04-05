@@ -21,7 +21,7 @@
 #    delegate_to: localhost
 
 - name: Verify docker container
-  hosts: container
+  hosts: epic-backup
   gather_facts: false
   tasks:
 
@@ -43,12 +43,20 @@
     register: result
     delegate_to: localhost
 
-
   - name: Assert container is running
     assert:
       that:
       - result.exists
       - result.container['State']['Status'] == "running"
+
+  - name: get infos about running services
+    ansible.builtin.service:
+      name: "{{ item }}"
+      state: started
+    check_mode: true
+    loop:
+      - ssh
+      - tor
   
 - name: Verify epicraspberries
   hosts: epicraspberries
@@ -66,16 +74,11 @@
     community.crypto.openssh_keypair:
       path: /home/pi/.ssh/id_rsa
 
-  - name: get onion hostname
-    ansible.builtin.command: cat /var/lib/tor/ssh/hostname
-    register: hostname
-    changed_when: false
-    delegate_to: epic-backup
-
-  - debug: msg="onion hostname is {{ hostname.stdout }}"
-
   - name: test ssh connection via onion hidden service
-    ansible.builtin.command: "ssh -oStrictHostKeyChecking=no -o ConnectTimeout=10 -q testuser@{{ hostname.stdout }} -p 2222 exit"
+    ansible.builtin.expect:
+      command: "ssh -oStrictHostKeyChecking=no -o ConnectTimeout=10 -q {{ hostname }}@{{ net_sync_hostname}} -p 2222 exit"
+      responses:
+        (.*)password:(.*): "{{ users_password }}"
     changed_when: false
     register: result
     retries: 5
@@ -83,11 +86,6 @@
     until: result is not failed
     become: true
     become_user: pi
-
-- name: Verify rsync backup
-  hosts: epic-raspberry
-  gather_facts: false
-  tasks:
 
   - name: create file to test backup
     ansible.builtin.copy:
@@ -98,14 +96,17 @@
 
   - name: create destination backup dir
     ansible.builtin.file:
-      path: /home/pi/backups
-      owner: testuser
+      path: "/home/{{ hostname }}/backups/"
+      owner: "{{ hostname }}"
       group: testcommon
       state: directory
     delegate_to: epic-backup
 
   - name: test rsync via ssh onion hidden service
-    ansible.builtin.command: "rsync -ai -e 'ssh -p 2222' ~/testfile testuser@{{ hostname.stdout }}:~/backups/"
+    ansible.builtin.expect:
+      command: backup_home2
+      responses:
+        (.*)password:(.*): "{{ users_password }}"
     register: rsync
     changed_when: rsync.stdout != ""
     become: true
@@ -113,7 +114,7 @@
 
   - name: Get stats about backup destination testfile
     stat:
-      path: /home/testuser/backups/testfile
+      path: "/home/{{ hostname }}/testfile"
     changed_when: false
     register: result
     delegate_to: epic-backup
