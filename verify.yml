@@ -54,9 +54,20 @@
       name: "{{ item }}"
       state: started
     check_mode: true
+    register: services
     loop:
       - ssh
       - tor
+
+  - ansible.builtin.debug:
+      var: services
+
+
+  - name: Assert expected services running
+    ansible.builtin.assert:
+      that: item.changed == false
+    loop: "{{ services.results }}"
+
   
 - name: Verify epicraspberries
   hosts: epicraspberries
