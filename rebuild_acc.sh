@@ -3,8 +3,7 @@ set -e
 
 source source.me
 
-#ansible-galaxy collection install -f git@github.com:einfachIT/ansible-collection-epic.git
-ansible-galaxy collection install -f ../ansible-collection-epic
+ansible-galaxy collection install -f git@github.com:einfachIT/ansible-collection-epic.git
 ansible-playbook -i inventory_acc.yml --extra-var project_dir=$(pwd) einfachit.epic.decommission_container
 ansible-playbook -i inventory_acc.yml einfachit.epic.decommission_raspberries
 ansible-playbook -i inventory_acc.yml einfachit.epic.provision_raspberries
