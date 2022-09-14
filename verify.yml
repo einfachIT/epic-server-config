@@ -107,7 +107,11 @@
       group: testcommon
       state: directory
     delegate_to: epic-backup
-
+    
+  - name: install pexpect module #needed on target machine for next ansible.builtin.expect to work
+    ansible.builtin.pip:
+      name: pexpect
+    
   - name: test rsync via ssh onion hidden service
     ansible.builtin.expect:
       command: backup_home2
