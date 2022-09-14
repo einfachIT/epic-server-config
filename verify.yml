@@ -79,7 +79,11 @@
   - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
     community.crypto.openssh_keypair:
       path: /home/pi/.ssh/id_rsa
-
+    
+  - name: install pexpect module #needed on target machine for next ansible.builtin.expect to work
+    ansible.builtin.pip:
+      name: pexpect
+      
   - name: test ssh connection via onion hidden service
     ansible.builtin.expect:
       command: "ssh -oStrictHostKeyChecking=no -o ConnectTimeout=10 -q {{ hostname }}@{{ net_sync_hostname}} -p 2222 exit"
@@ -107,10 +111,6 @@
       group: testcommon
       state: directory
     delegate_to: epic-backup
-    
-  - name: install pexpect module #needed on target machine for next ansible.builtin.expect to work
-    ansible.builtin.pip:
-      name: pexpect
     
   - name: test rsync via ssh onion hidden service
     ansible.builtin.expect:
