@@ -82,8 +82,9 @@
     
   - name: install pexpect module #needed on target machine for next ansible.builtin.expect to work
     ansible.builtin.apt:
-      name: python-pexpect
+      name: python3-pexpect
       state: present
+    become: true
       
   - name: test ssh connection via onion hidden service
     ansible.builtin.expect:
@@ -95,8 +96,8 @@
     retries: 5
     delay: 10
     until: result is not failed
-    become: true
-    become_user: pi
+    # become: true
+    # become_user: pi
 
   - name: create file to test backup
     ansible.builtin.copy:
