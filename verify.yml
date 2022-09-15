@@ -81,8 +81,9 @@
       path: /home/pi/.ssh/id_rsa
     
   - name: install pexpect module #needed on target machine for next ansible.builtin.expect to work
-    ansible.builtin.pip:
-      name: pexpect
+    ansible.builtin.apt:
+      name: python-pexpect
+      state: present
       
   - name: test ssh connection via onion hidden service
     ansible.builtin.expect:
