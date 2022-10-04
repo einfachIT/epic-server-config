@@ -31,6 +31,7 @@ jobs:
         env:
           VAULT_KEY: ${{ secrets.VAULT_KEY}}
         run: |
+          sudo apt-get install python3-venv
           source source.me
           echo "$VAULT_KEY" > .vault
           ansible-galaxy collection install -f ./einfachit.epic
