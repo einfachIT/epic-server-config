@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    runs-on: [self-hosted, linux, arm] 
+    runs-on: [self-hosted, Linux, ARM64] 
     steps:
       - uses: actions/checkout@v2
         with:
@@ -31,6 +31,7 @@ jobs:
         env:
           VAULT_KEY: ${{ secrets.VAULT_KEY}}
         run: |
+          sudo apt-get -y install python3-venv
           source source.me
           echo "$VAULT_KEY" > .vault
           ansible-galaxy collection install -f ./einfachit.epic
