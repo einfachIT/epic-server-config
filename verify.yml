@@ -88,7 +88,7 @@
       
   - name: test ssh connection via onion hidden service
     ansible.builtin.expect:
-      command: "ssh -oStrictHostKeyChecking=no -o ConnectTimeout=10 -q {{ hostname }}@{{ net_sync_hostname}} -p 2222 exit"
+      command: "ssh -oStrictHostKeyChecking=no -o ConnectTimeout=10 -q {{ hostname }}@{{ net_sync_hostname }} -p 2222 exit"
       responses:
         (.*)password:(.*): "{{ users_password }}"
     changed_when: false
@@ -114,11 +114,12 @@
       state: directory
     delegate_to: epic-backup
     
-  - name: test rsync via ssh onion hidden service
+  - name: test backup home dir via ssh onion hidden service
     ansible.builtin.expect:
       command: backup_home2
       responses:
         (.*)password:(.*): "{{ users_password }}"
+      timeout: 60
     register: rsync
     changed_when: rsync.stdout != ""
     become: true
