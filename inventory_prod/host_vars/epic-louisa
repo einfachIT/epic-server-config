@@ -1,5 +1,5 @@
 ---
 hostname: louisa-kellermann
-raw_hostname: ''
+raw_hostname: 'nix2'
 ansible_host: "{{ hostname }}.local"
 
