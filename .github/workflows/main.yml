@@ -21,7 +21,6 @@ jobs:
       - name: Clone einfachIT/ansible-collection-epic repository
         uses: actions/checkout@v2
         with:
-          submodules: recursive
           repository: einfachIT/ansible-collection-epic
           path: einfachit.epic
       
