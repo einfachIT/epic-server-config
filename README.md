@@ -1,3 +1,4 @@
+![molecule_test](https://github.com/einfachIT/epic-server-config/actions/workflows/main.yml/badge.svg)
 # epicconfig
 
 Stores einfach IT Infrastructure configurations.
