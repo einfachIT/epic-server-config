@@ -4,9 +4,12 @@ all:
       children:
         epicraspberries:
           hosts:
-            epic-bastian:
-            epic-karla:
-            epic-louisa:
+            # epic-bastian:
+            # epic-karla:
+            # epic-louisa:
+            epic-gloria:
+            epic-mathilda:
+            epic-loni:
         ext_disk:
            hosts:
             epic-docker-host:
