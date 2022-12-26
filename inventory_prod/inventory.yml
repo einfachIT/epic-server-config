@@ -5,11 +5,18 @@ all:
         epicraspberries:
           hosts:
             # epic-bastian:
+<<<<<<< HEAD
             # epic-karla:
             # epic-louisa:
             epic-gloria:
             epic-mathilda:
             epic-loni:
+=======
+            epic-karla:
+            # epic-louisa:
+            epic-gloria:
+            epic-mathilda:
+>>>>>>> f095eb448d242f92c1c8f0398bd9016c4a877642
         ext_disk:
            hosts:
             epic-docker-host:
