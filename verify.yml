@@ -116,7 +116,7 @@
     
   - name: test backup home dir via ssh onion hidden service
     ansible.builtin.expect:
-      command: backup_home2
+      command: backup_home
       responses:
         (.*)password:(.*): "{{ users_password }}"
       timeout: 300
