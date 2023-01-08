@@ -17,4 +17,5 @@ all:
               github_api_user: Bassinator
               actions_runner_token: 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
               actions_runner_arch: arm64
+              actions_runner_configure: true
               actions_runner_setup_service: true

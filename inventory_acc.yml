@@ -3,6 +3,7 @@ all:
     docker_host: epic-docker-host
     docker_api: "tcp://{{ hostvars[docker_host].ansible_host }}:2375"
     ansible_docker_extra_args: "-H={{ docker_api }}"
+    epic_domain: lan
   children:
     raspberries:
       vars:
@@ -18,12 +19,12 @@ all:
           hosts:
             epic-tim:
               hostname: tim-thaler
-              raw_hostname: '0xb2af4b33'
-              ansible_host: "{{ hostname }}.local"
+              raw_hostname: '0x55d28e08'
+              ansible_host: "{{ hostname }}.{{ epic_domain }}"
             epic-peter:
               hostname: peter-pan
-              raw_hostname: '0xf0364264'
-              ansible_host: "{{ hostname }}.local"
+              raw_hostname: '0x5652a71d'
+              ansible_host: "{{ hostname }}.{{ epic_domain }}"
         ext_disk:
           vars:
             ext_disk_device: '/dev/sda'
@@ -34,7 +35,7 @@ all:
                 epic-docker-host:
                   hostname: "karl-heinz"
                   raw_hostname: '0x52e884f2'
-                  ansible_host: "{{ hostname }}.local"
+                  ansible_host: "{{ hostname }}.{{ epic_domain }}"
     
     container:
       vars:
