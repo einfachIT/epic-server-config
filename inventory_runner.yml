@@ -7,13 +7,14 @@ all:
         ansible_ssh_pass: raspberry
         ansible_python_interpreter: /usr/bin/python3
         ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+        epic_domain: lan
       children:
         actions_runner:
           hosts:
             actions-runner:
               hostname: speedy-gonzales
               raw_hostname: '0x4132c423'
-              ansible_host: "{{ hostname }}.local"
+              ansible_host: "{{ hostname }}.{{ epic_domain }}"
               github_api_user: Bassinator
               actions_runner_token: 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
               actions_runner_arch: arm64
