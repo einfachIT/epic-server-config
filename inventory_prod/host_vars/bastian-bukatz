@@ -1,5 +1,5 @@
 ---
-hostname: bastian
+hostname: "{{ inventory_hostname }}"
 raw_hostname: 'nix3'
 ansible_host: "{{ hostname }}.local"
 
