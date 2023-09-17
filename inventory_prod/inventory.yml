@@ -2,7 +2,7 @@ all:
   children:
     raspberries:
       children:
-        epicraspberries:
+        raspberries:
           hosts:
             bastian-bukatz:
             karla-bukatz:
