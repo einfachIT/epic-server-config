@@ -1,5 +1,6 @@
 ---
 net_sync_hostname: k7us3jxxiaehagpdpnxtpc7hmw43ecbkbtywnhad7r7m3vbrskhckbad.onion
+hostname: "{{ inventory_hostname }}"
 ansible_connection: ssh
 ansible_user: pi
 ansible_ssh_pass: raspberry
