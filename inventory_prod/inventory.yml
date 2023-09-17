@@ -4,16 +4,12 @@ all:
       children:
         epicraspberries:
           hosts:
-            epic-bastian:
-            epic-karla:
-            epic-louisa:
-            epic-gloria:
-            epic-mathilda:
-            epic-loni:
-            epic-karla:
-            epic-louisa:
-            epic-gloria:
-            epic-mathilda:
+            bastian-bukatz:
+            karla-bukatz:
+            louisa-kellermann:
+            gloria-monn:
+            mathilda-meister:
+            loni-lehmann:
         ext_disk:
            hosts:
             epic-docker-host:
