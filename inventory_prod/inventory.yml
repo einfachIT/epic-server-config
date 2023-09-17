@@ -2,7 +2,7 @@ all:
   children:
     raspberries:
       children:
-        raspberries:
+        epicraspberries:
           hosts:
             bastian-bukatz:
             karla-bukatz:
@@ -11,7 +11,7 @@ all:
             mathilda-meister:
             loni-lehmann:
         ext_disk:
-           hosts:
+          hosts:
             epic-docker-host:
         argon_case:
             hosts:
