@@ -1,0 +1,36 @@
+// usage: rackdiag -f "/Library/Fonts//Arial Unicode.ttf" -Tpdf  home-rack.diag
+rackdiag {
+
+  // define 1st rack
+  rack {
+    6U;
+    ascending = true;
+    description = "upper row";
+
+    // define rack items
+    1: RPI3 (0xb1cf4a54)
+    2: RPI3 (0x52e884f2)
+    3: RPI3 (0x55d28e08)
+    4: RPI3 (0xf0364264)
+    5: RPI3(clusterhat)
+    6: Pi0\n 1W
+    6: Pi0\n 1W
+    6: Pi0\n 2W
+    6: Pi0\n 2W
+  }
+
+  // define 2nd rack
+  rack {
+    6U;
+    ascending = true;
+    description = "lower row";
+
+    // define rack items
+    1: RPI4 2gb (0xf03843ed)
+    2: RPI4 4gb (0x5618cdd5)
+    3: RPI4 2gb (0x017252d9)
+    2: RPI4 8gb (0x5652a71d)
+    5: NanoPi R6S [2U]
+  }
+
+}

@@ -4,6 +4,7 @@ all:
       children:
         epicraspberries:
           hosts:
+            localhost:
             bastian-bukatz:
             karla-bukatz:
             louisa-kellermann:
