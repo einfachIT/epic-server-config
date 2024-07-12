@@ -3,44 +3,48 @@ all:
     docker_host: epic-docker-host
     docker_api: "tcp://{{ hostvars[docker_host].ansible_host }}:2375"
     ansible_docker_extra_args: "-H={{ docker_api }}"
-    epic_domain: lan
+    epic_domain: local
     switch_ip: '192.168.2.176'
     snmp_community: private
   children:
     raspberries:
       vars:
         ansible_connection: ssh
-        ansible_user: pi
-        ansible_ssh_pass: raspberry
+        ansible_user: epic
+          #ansible_ssh_pass: epic
         ansible_python_interpreter: /usr/bin/python3
         ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
       children:
-        epicraspberries:
-          vars:
-            net_sync_hostname: ubhkxntypimkfegke3fggj4ope4loh2uh4odywuwbsdphw5gwjqif7id.onion
-          hosts:
-            epic-tim:
-              hostname: tim-thaler
-              raw_hostname: '0x55d28e08'
-              ansible_host: "{{ hostname }}.{{ epic_domain }}"
-              switch_port_id: 51
-            epic-peter:
-              hostname: peter-pan
-              raw_hostname: '0x5652a71d'
-              ansible_host: "{{ hostname }}.{{ epic_domain }}"
-              switch_port_id: 50
+        #epicraspberries:
+        #  vars:
+        #    net_sync_hostname: ubhkxntypimkfegke3fggj4ope4loh2uh4odywuwbsdphw5gwjqif7id.onion
+        #  hosts:
+        #    epic-tim:
+        #      hostname: tim-thaler
+        #      raw_hostname: '0x55d28e08'
+        #      ansible_host: "{{ hostname }}.{{ epic_domain }}"
+        #      switch_port_id: 51
+        #    epic-peter:
+        #      hostname: peter-pan
+        #      raw_hostname: '0x5652a71d'
+        #      ansible_host: "{{ hostname }}.{{ epic_domain }}"
+        #      switch_port_id: 50
         ext_disk:
           vars:
             ext_disk_device: '/dev/sda'
+            ext_disk_force_whipe: false
             # ext_disk_device: '/dev/loop0'
           children:
             docker_host:
               hosts:
                 epic-docker-host:
                   hostname: "karl-heinz"
-                  raw_hostname: '0x52e884f2'
+                  raw_hostname: 'pi4-8gb-1'
                   ansible_host: "{{ hostname }}.{{ epic_domain }}"
                   switch_port_id: 52
+            netboot_server:
+              hosts:
+                epic-docker-host:
     
     container:
       vars:
@@ -53,3 +57,4 @@ all:
         epic_backup:
           hosts:
             epic-backup:
+              docker_container_privileged: true
