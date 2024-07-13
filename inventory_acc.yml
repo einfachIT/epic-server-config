@@ -31,8 +31,13 @@ all:
         #      switch_port_id: 50
         ext_disk:
           vars:
-            ext_disk_device: '/dev/sda'
-            ext_disk_force_whipe: false
+            ext_disk_devices:
+              - ext_disk_device: '/dev/sda'
+                ext_disk_force_whipe: false
+                ext_disk_mountpoint: "/var/lib/docker"
+              - ext_disk_device: '/dev/sdb'
+                ext_disk_force_whipe: false
+                ext_disk_mountpoint: "/data"
             # ext_disk_device: '/dev/loop0'
           children:
             docker_host:
