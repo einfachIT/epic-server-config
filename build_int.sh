@@ -6,8 +6,6 @@ source source.me
 ansible-galaxy collection install -f ../ansible-collection-epic
 ansible-galaxy collection install -f ../ansible-collection-epic-infra
 
-ansible-playbook -i inventory_acc.yml --extra-var project_dir=$(pwd) einfachit.epic.decommission_container
-ansible-playbook -i inventory_acc.yml einfachit.epic.decommission_raspberries
 
 ansible-playbook -i inventory_acc.yml einfachit.epic.provision_raspberries
 ansible-playbook -i inventory_acc.yml einfachit.epic.configure_server
