@@ -1,0 +1,52 @@
+all:
+  vars:
+    docker_host: epic-docker-host
+    docker_api: "tcp://{{ hostvars[docker_host].ansible_host }}:2375"
+    ansible_docker_extra_args: "-H={{ docker_api }}"
+    epic_domain: fritz.box
+    switch_ip: '192.168.2.176'
+    snmp_community: private
+  children:
+    raspberries:
+      vars:
+        ansible_connection: ssh
+        ansible_user: epic
+          #ansible_ssh_pass: epic
+        ansible_python_interpreter: /usr/bin/python3
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      children:
+        ext_disk:
+          vars:
+            ext_disk_devices:
+              - ext_disk_device: '/dev/sdb'
+                ext_disk_force_whipe: false
+                ext_disk_mountpoint: "/var/lib/docker"
+              - ext_disk_device: '/dev/sda'
+                ext_disk_force_whipe: false
+                ext_disk_mountpoint: "/data"
+        docker_host:
+          hosts:
+            epic-docker-host:
+              hostname: "mighty-mouse"
+              raw_hostname: 'pi4-argon-m2'
+              ansible_host: "{{ hostname }}.{{ epic_domain }}"
+              switch_port_id: 49
+        netboot_server:
+          hosts:
+            epic-docker-host:
+        argon_case:
+          hosts:
+            epic-docker-host:
+    
+    container:
+      vars:
+        ansible_connection: docker                                       
+        remote_tmp: /tmp/.ansible
+        ansible_user: root 
+        image: balenalib/raspberrypi4-64-debian-python
+        docker_keep_volumes: true # do not delete home directories when deleting container
+      children:
+        epic_backup:
+          hosts:
+            epic-backup:
+              docker_container_privileged: true

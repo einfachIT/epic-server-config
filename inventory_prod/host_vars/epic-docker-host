@@ -1,6 +1,0 @@
----
-ext_disk_device: '/dev/sda'
-hostname: "bibi-blocksberg"
-ansible_host: "{{ hostname }}.local"
-raw_hostname: '0xb1cf4a54'
-

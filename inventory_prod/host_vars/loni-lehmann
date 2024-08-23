@@ -1,4 +1,0 @@
----
-raw_hostname: ''
-ansible_host: "{{ hostname }}.local"
-
