@@ -4,18 +4,21 @@ all:
       children:
         epicraspberries:
           hosts:
-            localhost:
             bastian-bukatz:
             karla-bukatz:
-            louisa-kellermann:
+              #louisa-kellermann:
             gloria-monn:
             mathilda-meister:
-            loni-lehmann:
+              #loni-lehmann:
+            amanda-weber:
+            erik-hegener:
+            samantha-bernet:
+            yara-schmid:
         ext_disk:
           hosts:
             epic-docker-host:
         argon_case:
-            hosts:
+          hosts:
             epic-docker-host:
         docker_host:
           hosts:
@@ -25,3 +28,9 @@ all:
         epic_backup:
           hosts:
             epic-backup:
+              ansible_connection: docker
+              remote_tmp: /tmp/.ansible
+              ansible_user: root
+              image: balenalib/raspberrypi4-64-debian-python
+              docker_keep_volumes: true # do not delete home directories when deleting container
+              docker_container_privileged: true
