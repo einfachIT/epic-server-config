@@ -1,0 +1,14 @@
+#hostname: "gustav-gans"
+#ansible_host: "{{ hostname }}"
+ext_disk_devices:
+  - ext_disk_device: '/dev/sda'
+    ext_disk_force_whipe: false
+    ext_disk_mountpoint: "/var/lib/docker"
+  - ext_disk_device: '/dev/nvme0n1'
+    ext_disk_force_whipe: false
+    ext_disk_mountpoint: "/data"
+dhcp_range: "192.168.4.100,192.168.4.250,12h"
+netboot_server_dhcp_range: "{{ dhcp_range }}"
+wifi_bridge_dhcp_range: "{{ dhcp_range }}"
+wifi_bridge_external_dev: "eth0"
+wifi_bridge_lan_dev: "eth0.4"

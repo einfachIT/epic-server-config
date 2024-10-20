@@ -4,7 +4,7 @@ all:
     docker_api: "tcp://{{ hostvars[docker_host].ansible_host }}:2375"
     ansible_docker_extra_args: "-H={{ docker_api }}"
     epic_domain: local
-    switch_ip: '192.168.2.176'
+    switch_ip: "192.168.178.31"
     snmp_community: private
   children:
     raspberries:
@@ -45,11 +45,13 @@ all:
                 epic-docker-host:
                   hostname: "karl-heinz"
                   raw_hostname: 'pi4-8gb-1'
-                  ansible_host: "{{ hostname }}.{{ epic_domain }}"
+                  ansible_host: "{{ hostname }}"
                   switch_port_id: 52
             netboot_server:
               hosts:
                 epic-docker-host:
+                  piaas_user: "epic"
+                  piaas_external_fqdn: "einfachit.ipv64.net"
     
     container:
       vars:

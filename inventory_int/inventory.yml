@@ -1,0 +1,32 @@
+all:
+  children:
+    raspberries:
+      children:
+        #epicraspberries:
+        #  vars:
+        #    net_sync_hostname: ubhkxntypimkfegke3fggj4ope4loh2uh4odywuwbsdphw5gwjqif7id.onion
+        #  hosts:
+        #    epic-tim:
+        #      hostname: tim-thaler
+        #      raw_hostname: '0x55d28e08'
+        #      ansible_host: "{{ hostname }}.{{ epic_domain }}"
+        #      switch_port_id: 51
+        #    epic-peter:
+        #      hostname: peter-pan
+        #      raw_hostname: '0x5652a71d'
+        #      ansible_host: "{{ hostname }}.{{ epic_domain }}"
+        #      switch_port_id: 50
+        ext_disk:
+          children:
+            docker_host:
+              hosts:
+                gustav-gans:
+            netboot_server:
+              hosts:
+                gustav-gans:
+        wifi_bridge:
+          hosts:
+            gustav-gans:
+    container:
+      hosts: 
+        epic_backup:

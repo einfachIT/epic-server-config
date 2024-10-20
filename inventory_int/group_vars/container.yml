@@ -1,0 +1,5 @@
+ansible_connection: docker                                       
+remote_tmp: /tmp/.ansible
+ansible_user: root 
+image: balenalib/raspberrypi4-64-debian-python
+docker_keep_volumes: true # do not delete home directories when deleting container
