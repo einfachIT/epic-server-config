@@ -3,7 +3,7 @@ all:
     docker_host: epic-docker-host
     docker_api: "tcp://{{ hostvars[docker_host].ansible_host }}:2375"
     ansible_docker_extra_args: "-H={{ docker_api }}"
-    epic_domain: local
+    epic_domain: fritz.box
     switch_ip: '192.168.2.176'
     snmp_community: private
   children:
@@ -48,6 +48,9 @@ all:
                   ansible_host: "{{ hostname }}.{{ epic_domain }}"
                   switch_port_id: 52
             netboot_server:
+              vars:
+                piaas_external_fqdn: "einfachit.ipv64.net"
+                piaas_internal_fqdn: "{{ hostname }}.{{epic_domain }}"
               hosts:
                 epic-docker-host:
     
